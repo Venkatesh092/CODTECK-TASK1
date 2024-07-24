@@ -1,0 +1,91 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+import java.time.Duration;
+
+public class SpiceJetAutomation {
+    public static void main(String[] args) {
+        // Setup WebDriverManager
+        WebDriverManager.chromedriver().setup();
+
+        // Initialize the WebDriver
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://www.spicejet.com/");
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        WebElement oneWay =driver.findElement(By.xpath("//div[contains(text(),'one way')]"));
+        oneWay.click();
+        WebElement fromInput = driver.findElement(By.xpath("//div[@data-testid='to-testID-origin']//input[@type='text']"));
+        fromInput.click();
+        WebElement selectCity = driver.findElement(By.xpath("//div[normalize-space()='Indira Gandhi International Airport']"));
+        selectCity.click();
+        
+        WebElement toInput = driver.findElement(By.xpath("//div[@data-testid='to-testID-destination']//input[@type='text']"));
+        toInput.click();
+        
+        WebElement toCity = driver.findElement(By.xpath("//div[@class='css-1dbjc4n r-19yat4t r-1rt2jqs']//div[1]//div[2]//div[1]"));
+        toCity.click();
+        
+        WebElement departureDate = driver.findElement(By.xpath("//body[1]/div[2]/div[1]/div[1]/div[1]/div[3]/div[2]/div[4]/div[1]/div[2]/div[2]/div[3]/div[2]/div[1]/div[1]/div[1]/div[3]/div[4]/div[3]/div[1]/div[1]"));
+        departureDate.click();
+        
+        WebElement searchFlight = driver.findElement(By.cssSelector(".css-1dbjc4n.r-1awozwy.r-z2wwpe.r-1loqt21.r-18u37iz.r-1777fci.r-1g94qm0.r-1w50u8q.r-ah5dr5.r-1otgn73"));
+        searchFlight.click();
+        
+        
+    }
+}
+
+/*pom.xmlfile
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>venkatesh</groupId>
+  <artifactId>selenium-java</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <dependencies>
+	
+	<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+<dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-java</artifactId>
+    <version>4.20.0</version>
+</dependency>
+<dependency>
+    <groupId>org.testng</groupId>
+    <artifactId>testng</artifactId>
+    <version>7.10.2</version>
+    <scope>test</scope>
+</dependency>
+
+<dependency>
+    <groupId>io.github.bonigarcia</groupId>
+    <artifactId>webdrivermanager</artifactId>
+    <version>5.9.1</version> <!-- Check for the latest version -->
+</dependency>
+
+
+
+	
+  </dependencies>
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <release>17</release>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
+
+*/
+
+
